@@ -50,6 +50,14 @@ module Lint
       assert ["s1", "s2"].include?(r.spop("foo"))
       assert ["s1", "s2"].include?(r.spop("foo"))
       assert_equal nil, r.spop("foo")
+
+      r.sadd "foo", "s1"
+      r.sadd "foo", "s2"
+      r.sadd "foo", "s3"
+
+      assert_equal r.spop("foo", 2).length, 2
+      assert_equal r.spop("foo", 2).length, 1
+      assert_equal [], r.spop("foo", 2)
     end
 
     def test_scard

@@ -482,9 +482,9 @@ class Redis
       node_for(key).srem(key, member)
     end
 
-    # Remove and return a random member from a set.
-    def spop(key)
-      node_for(key).spop(key)
+    # Remove and return one or more random members from a set.
+    def spop(key, count = nil)
+      node_for(key).spop(key, count)
     end
 
     # Get a random member from a set.
